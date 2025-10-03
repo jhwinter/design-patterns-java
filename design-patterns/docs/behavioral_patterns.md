@@ -178,6 +178,23 @@ Let's consider a simple payment system where users can pay using different metho
 
 **With the Strategy Pattern, the logic for each payment type is encapsulated in separate strategy classes, and the `PaymentService` (context class) delegates the task of payment processing to one of these strategies at runtime.**
 
+```mermaid
+classDiagram
+    class PaymentService {
+        -strategy
+        +pay()
+    }
+    note for PaymentMethod "alternative name = PaymentStrategy"
+    class PaymentMethod {
+        <<interface>>
+        +processPayment()
+    }
+    PaymentService *-- PaymentMethod
+    PaymentMethod <|.. CreditCard : implements
+    PaymentMethod <|.. DebitCard : implements
+    PaymentMethod <|.. UPI : implements
+```
+
 ### Strategy Pattern
 
 **Problem**: Hardcoded algorithms in classes lead to:
@@ -219,7 +236,7 @@ Without the Command Pattern, the buttons directly interact with the `TextEditor`
 
 ### Command Pattern
 
-By introducing the Command Pattern, we can decouple the actions (bold, italic, underline) from the UI components (buttons), making the design more flexible and maintainable. The buttons no longer need to know about the editor directly but instead work with generic `Command` objects.
+By introducing the Command Pattern, we can **decouple** the actions (bold, italic, underline) from the UI components (buttons), making the design more flexible and maintainable. The buttons no longer need to know about the editor directly but instead work with generic `Command` objects.
 
 ### Command Pattern Structure
 

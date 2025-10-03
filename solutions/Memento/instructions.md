@@ -17,7 +17,5 @@ Implement the undo feature for shape attribute changes using the **Memento Desig
 After executing the code, you should save the shape's attributes to the editor three times using the specified values. Then, perform one undo operation to revert to the previous state. Finally, display the current shape attributes to confirm the changes made by the undo operation.
 
 **Instructions**:
-
-You only need to complete the TODOs mentioned in the code.
-
-Please do not modify any existing code outside of the specified TODO sections.
+* You only need to complete the TODOs mentioned in the code.
+* Please do not modify any existing code outside of the specified TODO sections.
