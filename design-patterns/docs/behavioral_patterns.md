@@ -165,3 +165,298 @@ them as needed, such as to the console, file, or remote server.
 
 
 ## Strategy Pattern
+
+### Motivation
+
+Let's consider a simple payment system where users can pay using different methods like credit cards or PayPal. Without the Strategy Pattern, you might use `if-else` conditions to handle the different payment methods, leading to less maintainable and flexible code.
+
+### Problems in Code
+
+* The `PaymentService` class has multiple responsibilities (deciding the payment type and processing it).
+* Adding a new payment method requires modifying the `PaymentService` class.
+* The use of `if-else` conditions can make the code harder to maintain as more payment types are added.
+
+**With the Strategy Pattern, the logic for each payment type is encapsulated in separate strategy classes, and the `PaymentService` (context class) delegates the task of payment processing to one of these strategies at runtime.**
+
+### Strategy Pattern
+
+**Problem**: Hardcoded algorithms in classes lead to:
+* Code **duplication**.
+* Increased **maintenance complexity** when switching between algorithms.
+* **Violation of Open/Closed Principle**: Modifications are required every time a new algorithm is introduced.
+**Solution**: The Strategy Pattern decouples the algorithm implementation from the client, allowing easy **switching of algorithms** without altering the client code.
+
+### Strategy Pattern Structure
+
+**Context**: The client class that uses a strategy to perform an operation.
+**Strategy Interface**: Defines the operations that all concrete strategies must
+implement.
+**Concrete Strategy**: Implements the actual algorithms, interchangeable based on the
+context.
+
+### Strategy Pattern Use Case
+
+**When to Use the Strategy Pattern**:
+* When multiple algorithms need to be used interchangeably.
+* To avoid conditional statements (`if-else` or `switch-case`) in the client
+code.
+* When a class has multiple behaviors, which can vary independently.
+
+
+
+## Command Pattern
+
+### Motivation
+
+Imagine you're developing a basic text editor with buttons for **bold**, **italic**, and **underline** text formatting.
+
+Without the Command Pattern, the buttons directly interact with the `TextEditor` class, and you’d end up hardcoding behavior into the UI classes, making them tightly coupled.
+
+### Problems in Code
+
+* Each button class is tightly coupled with the `TextEditor`. If the action changes, all button classes need to be modified.
+* It's harder to extend with new commands or add functionality such as undo/redo or logging.
+
+### Command Pattern
+
+By introducing the Command Pattern, we can decouple the actions (bold, italic, underline) from the UI components (buttons), making the design more flexible and maintainable. The buttons no longer need to know about the editor directly but instead work with generic `Command` objects.
+
+### Command Pattern Structure
+
+* **Structure**:
+  * **Command**: Interface for executing operations.
+  * **Invoker**: Sends the command.
+  * **Receiver**: Performs the operation.
+
+### Command Pattern Benefits
+
+* **Decoupling of Invoker and Receiver**: The button (invoker) doesn't know the details of the `TextEditor` (receiver), making the system more flexible and reusable.
+* **Command History and Undo**: Commands can be logged for undo/redo functionality.
+* **Task Queuing**: Commands can be stored in a queue and executed later, making it useful for task scheduling.
+* **Extensibility**: New commands can be added easily without modifying existing code. For example, adding a `ChangeColorCommand` only requires creating a new command class.
+
+### Command Pattern Use Cases
+
+**GUI Applications**:
+* Commands can be associated with buttons, menus, and keyboard shortcuts in applications like text editors, spreadsheets, or drawing software.
+
+**Task Scheduling**:
+* Commands can be placed in a queue and executed later, useful in batch processing or deferred task execution.
+
+**Undo/Redo Functionality**:
+* Commands can be stored and rolled back to provide undo and redo capabilities, especially in applications like IDEs, word processors, or graphics software.
+
+**Macro Recording**:
+* Actions performed by the user can be recorded as a series of commands, which can then be played back as macros.
+
+### Command Pattern Drawbacks
+
+* **Increased Complexity**: Introducing the Command Pattern can lead to more classes and complexity, especially when there are many different commands.
+* **Overhead**: Each operation becomes an object, which may add memory and performance overhead in systems with large numbers of commands.
+
+
+
+## Template Method Pattern
+
+### Motivation
+
+Consider a scenario where you have different data parsers (e.g., CSV, XML, and JSON). Each parser follows the same steps: **open file, parse data, and close file**.
+
+Without the Template Method Pattern, you might end up duplicating the common steps in each parser class.
+
+### Problems in our code
+
+* Code duplication: The `openFile()` and `closeFile()` methods are duplicated in both parsers.
+* Any changes to the common logic would require changes in every parser, violating the DRY (Don’t Repeat Yourself) principle.
+
+### Template Method Pattern
+
+**Problem**: Different parts of an algorithm may need to vary in subclasses, but the
+overall structure should remain consistent.
+
+**Solution**: The Template Method Pattern defines the **skeleton** of an algorithm in a
+base class and lets subclasses override specific steps.
+
+**Structure**:
+* **Abstract Class**: Defines the algorithm skeleton.
+* **Concrete Subclasses**: Override specific steps of the algorithm.
+
+### Template Method Pattern Benefits
+
+* **Code Reuse**: Common code is moved to the parent class, promoting reuse
+  and reducing duplication.
+* **Flexibility**: Subclasses can vary certain steps in the algorithm, while keeping
+  the overall structure intact.
+* **Consistency**: Ensures that the high-level structure of the algorithm remains
+  consistent, even when subclass behavior differs.
+
+### Use Cases of Template Method
+
+**UI Frameworks**: Rendering a UI element might follow a fixed set of steps (initialize, draw, finish), but the details of how each element is drawn are left to subclasses.
+
+**Document Processing**: A framework might define the skeleton for reading, processing, and saving documents, while specific formats (e.g., Word, PDF) provide their own processing logic.
+
+**Game Development**: A game loop (initialize, update, render) can be defined in a base class, with specific games implementing their own logic for updating and rendering.
+
+The **Template Method Pattern** is ideal for situations where a common algorithm exists, but some steps may need to be redefined by subclasses. It helps enforce structure and promotes reusability, while allowing flexibility where needed.
+
+
+
+## Iterator Pattern
+
+### Motivation
+
+Suppose you have a collection, such as an array or list, and you need to provide a mechanism for accessing its elements. Without the iterator pattern, the client code needs to understand how the collection is structured, and different collections would require different methods to traverse them.
+
+### Problems in our code
+
+**Problems**:
+* The client needs to know the internal structure of the collection (array in this
+case).
+* If we change the collection type (e.g., from an array to a linked list), we would
+need to modify the client code.
+* It’s harder to implement different traversal strategies
+
+### Iterator Pattern
+
+**Problem**: How to access elements in a collection without exposing its internal representation.
+
+**Solution**: The Iterator Pattern provides a way to **traverse** a collection without revealing its underlying structure, offering a uniform interface for traversal.
+
+**Structure**:
+* **Iterator**: Interface for traversing a collection.
+* **Collection**: Holds the elements and provides an iterator.
+
+### Iterator Pattern Benefits
+
+1. **Separation of Concerns**: The traversal logic is separated from the collection
+   itself, allowing you to change one without affecting the other.
+2. **Uniform Interface**: The same interface (`Iterator`) is used to traverse
+   different types of collections, making the code more flexible.
+3. **Simplified Client Code**: The client doesn’t need to know the underlying data
+   structure, reducing coupling and making the code easier to maintain.
+4. **Multiple Traversal Strategies**: You can implement multiple types of iterators
+   (e.g., forward, backward, filtered) without changing the collection.
+
+### Iterator Pattern Use Cases
+
+1. **Java Collections Framework**:
+   * The Java Collections Framework (e.g., `ArrayList`, `HashSet`) uses the iterator pattern to provide a common interface (`Iterator`) for traversing different types of collections.
+2. **Database Cursors**:
+   * In database programming, cursors are used to iterate over result sets. The iterator pattern can abstract this traversal, making it easier to work with data from a database without exposing the underlying query mechanism.
+3. **Tree Traversals**:
+   * In tree data structures, the iterator pattern can be used to traverse nodes using different strategies like depth-first or breadth-first, without exposing the tree's internal structure.
+4. **File Systems**:
+   * File systems can use the iterator pattern to traverse directories and files without exposing the internal details of how files and folders are stored.
+
+### Iterator Pattern Drawbacks
+
+1. **Additional Complexity**: Implementing the iterator pattern can add extra layers of abstraction, especially for small or simple collections where direct traversal is sufficient.
+2. **Increased Overhead**: For small collections or when the structure is unlikely to change, the overhead of creating iterators may not be justified.
+
+
+
+## State Pattern
+
+### Motivation
+
+You are tasked with building a DirectionService class for a navigation app. This class calculates the estimated time of arrival (ETA) and provides directions between two points. The ETA and direction differ based on the mode of transportation, which can be one of the following:
+
+* Walking
+* Cycling
+* Car
+* Train
+
+### Problems with our code
+
+**Tight Coupling and Complex Conditional Logic**:
+* The `DirectionService` likely uses conditional statements (`if-else` or `switch-case`) based on transportation mode enums to determine how to calculate ETA and provide directions.
+* As the number of transportation modes increases, the conditional logic becomes **more complex and harder to maintain**.
+
+**Violation of the Open/Closed Principle**:
+* **Adding new transportation modes** (e.g., Airplane, Boat) requires modifying the existing`DirectionService` class, which goes against the **Open/Closed Principle** (classes should be open for extension but closed for modification).
+
+**Code Duplication and Reduced Maintainability**:
+* Similar code blocks for different transportation modes may lead to **code duplication**, making the system less maintainable and more error-prone.
+
+**Scalability Issues**:
+* As more features or transportation modes are added, the class becomes **bulky**, impacting scalability and readability
+
+### State Pattern Structure
+
+**Structure**:
+* **Context**: Holds a reference to the current state.
+* **State**: Interface for state-specific behavior.
+* **Concrete State**: Specific implementations of the `State` interface that represent a particular state of the context object.
+
+### State Pattern Example
+
+**UI Navigation**
+* **Scenario**: A mobile app UI where the navigation behavior changes based on
+whether the user is logged in or not.
+
+**Example**:
+* States: **LoggedInState**, **LoggedOutState**.
+* Context: The app's navigation system switches between these states.
+
+### State Pattern Use Cases
+
+1. **UI Components**: Buttons that change behavior based on state (enabled,
+disabled, pressed).
+2. **Vending Machines**: States like waiting for money, dispensing product, or out
+   of stock.
+3. **TCP Connections**: Changing behavior based on connection state (listening,
+   connected, closed)
+
+
+
+## Mediator Pattern
+
+### Motivation
+
+We want to build a chat system with multiple participants where each user can send messages to all other users. If users send messages to each other directly, the complexity increases as more users are added. Each user must know about every other user, creating a complex web of communication and dependencies.
+
+### Problems with our code
+
+* As more users are added, each user needs to manage direct communication with all others, leading to high coupling.
+* If a new communication rule is introduced (e.g., message logging), it would need to be added to all users.
+
+### Mediator Pattern
+
+**Problem**: Objects in a system need to communicate, but direct communication leads to tight coupling and complexity.
+
+**Solution**: The Mediator Pattern introduces a **mediator** object that handles all communication between objects, reducing direct dependencies and coupling.
+
+In our chat app, by introducing a **Mediator** object, we will decouple the users from knowing about each other directly. The **Mediator** handles all communication, and the users (colleagues) only interact with the **Mediator**. This simplifies the interaction and reduces dependencies.
+
+### Mediator Pattern Structure
+
+1. **ChatMediator Interface**: Declares the `sendMessage` method, which all mediators must implement.
+2. **Concrete Mediator**:
+   * The `ChatRoom` class implements the `ChatMediator` interface. It holds a list of users and handles message broadcasting.
+3. **User Class**:
+   * Each `User` object represents a participant in the chat. When a user sends a message, the `sendMessage` method in the `ChatRoom` mediator is called, which distributes the message to all users except the sender.
+4. **Communication**:
+   * Users interact only with the `ChatRoom` (mediator), which facilitates communication between them, removing direct dependencies between individual users.
+
+### Mediator Pattern Benefits
+
+* **Reduces Complexity**: The mediator centralizes communication, reducing direct dependencies between objects.
+* **Loose Coupling**: Colleagues only interact with the mediator, making them easier to manage, extend, and maintain.
+* **Single Responsibility**: The mediator handles complex communication logic, allowing colleagues to focus on their own behavior.
+* **Centralized Control**: Changes to communication rules can be made in the mediator without affecting the colleagues
+
+### Mediator Pattern Use Cases
+
+1. **Air Traffic Control**:
+Airplanes communicate through a central control tower (mediator) instead of coordinating directly with each other. 
+2. **GUI Component Coordination**:
+In GUI applications, multiple UI components may need to interact. For example, when a dropdown changes, it may trigger updates to text fields, buttons, etc. A mediator can handle this interaction logic instead of having the components know about each other directly. 
+3. **Workflow Systems**:
+In a business process management system, a mediator can coordinate various activities across multiple systems or departments.
+
+
+
+## Summary
+
+This module covers key **Behavioral Design Patterns** that help define how objects interact and manage state transitions within a system. From **observer-based event notification** to **decoupling algorithms with strategies**, each pattern offers a solution to common communication challenges in software design.
