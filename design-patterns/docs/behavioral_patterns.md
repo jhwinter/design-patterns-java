@@ -142,11 +142,11 @@ classDiagram
 
 ### Observer Pattern Benefits
 
-* **Loose Coupling**: The subject (e.g., `WeatherStation`) doesn’t need to know
+1. **Loose Coupling**: The subject (e.g., `WeatherStation`) doesn’t need to know
 about the specific observers. It just notifies them.
-* **Scalability**: New observers (e.g., new display devices) can easily be added
+2. **Scalability**: New observers (e.g., new display devices) can easily be added
 without changing the subject.
-* **Flexibility**: Observers can be dynamically added or removed at runtime
+3. **Flexibility**: Observers can be dynamically added or removed at runtime
 
 ### Observer Pattern Use Cases
 
@@ -245,12 +245,28 @@ By introducing the Command Pattern, we can **decouple** the actions (bold, itali
   * **Invoker**: Sends the command.
   * **Receiver**: Performs the operation.
 
+```mermaid
+classDiagram
+    class Command {
+        <<interface>>
+        +execute()
+    }
+    note for Invoker "Button"
+    Command <|.. ConcreteCommand : implements
+    class Invoker {
+        -command
+    }
+    Invoker *-- Command
+    note for Receiver "TextEditor"
+    Receiver <-- ConcreteCommand
+```
+
 ### Command Pattern Benefits
 
-* **Decoupling of Invoker and Receiver**: The button (invoker) doesn't know the details of the `TextEditor` (receiver), making the system more flexible and reusable.
-* **Command History and Undo**: Commands can be logged for undo/redo functionality.
-* **Task Queuing**: Commands can be stored in a queue and executed later, making it useful for task scheduling.
-* **Extensibility**: New commands can be added easily without modifying existing code. For example, adding a `ChangeColorCommand` only requires creating a new command class.
+1. **Decoupling of Invoker and Receiver**: The button (invoker) doesn't know the details of the `TextEditor` (receiver), making the system more flexible and reusable.
+2. **Command History and Undo**: Commands can be logged for undo/redo functionality.
+3. **Task Queuing**: Commands can be stored in a queue and executed later, making it useful for task scheduling.
+4. **Extensibility**: New commands can be added easily without modifying existing code. For example, adding a `ChangeColorCommand` only requires creating a new command class.
 
 ### Command Pattern Use Cases
 
@@ -300,11 +316,11 @@ base class and lets subclasses override specific steps.
 
 ### Template Method Pattern Benefits
 
-* **Code Reuse**: Common code is moved to the parent class, promoting reuse
+1. **Code Reuse**: Common code is moved to the parent class, promoting reuse
   and reducing duplication.
-* **Flexibility**: Subclasses can vary certain steps in the algorithm, while keeping
+2. **Flexibility**: Subclasses can vary certain steps in the algorithm, while keeping
   the overall structure intact.
-* **Consistency**: Ensures that the high-level structure of the algorithm remains
+3. **Consistency**: Ensures that the high-level structure of the algorithm remains
   consistent, even when subclass behavior differs.
 
 ### Use Cases of Template Method
@@ -458,10 +474,10 @@ In our chat app, by introducing a **Mediator** object, we will decouple the user
 
 ### Mediator Pattern Benefits
 
-* **Reduces Complexity**: The mediator centralizes communication, reducing direct dependencies between objects.
-* **Loose Coupling**: Colleagues only interact with the mediator, making them easier to manage, extend, and maintain.
-* **Single Responsibility**: The mediator handles complex communication logic, allowing colleagues to focus on their own behavior.
-* **Centralized Control**: Changes to communication rules can be made in the mediator without affecting the colleagues
+1. **Reduces Complexity**: The mediator centralizes communication, reducing direct dependencies between objects.
+2. **Loose Coupling**: Colleagues only interact with the mediator, making them easier to manage, extend, and maintain.
+3. **Single Responsibility**: The mediator handles complex communication logic, allowing colleagues to focus on their own behavior.
+4. **Centralized Control**: Changes to communication rules can be made in the mediator without affecting the colleagues
 
 ### Mediator Pattern Use Cases
 
