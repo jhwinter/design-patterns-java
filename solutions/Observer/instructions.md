@@ -5,7 +5,6 @@ You are developing a stock price monitoring system that implements the Observer 
 
 
 **Requirements**:
-
 * Subject (Stock Market):
   * The stock market should maintain a list of observers (investors).
   * It should have methods to register, remove, and notify observers.
@@ -19,7 +18,6 @@ You are developing a stock price monitoring system that implements the Observer 
 
 
 **Output**:
-
 * The program will register two observers (InvestorA and InvestorB).
 * It will notify both observers of significant stock price changes that exceed the predefined threshold.
 * If an observer is removed, they will no longer receive notifications for subsequent price changes.
@@ -28,6 +26,5 @@ You are developing a stock price monitoring system that implements the Observer 
 
 
 **Instructions**:
-
 * You only need to complete the TODOs mentioned in the code.
 * Please do not modify any existing code outside of the specified TODO sections.
