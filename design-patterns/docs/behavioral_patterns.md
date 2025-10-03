@@ -265,6 +265,7 @@ classDiagram
 
 1. **Decoupling of Invoker and Receiver**: The button (invoker) doesn't know the details of the `TextEditor` (receiver), making the system more flexible and reusable.
 2. **Command History and Undo**: Commands can be logged for undo/redo functionality.
+   * To implement `undo()` functionality, add `undo()` to the `Command` interface
 3. **Task Queuing**: Commands can be stored in a queue and executed later, making it useful for task scheduling.
 4. **Extensibility**: New commands can be added easily without modifying existing code. For example, adding a `ChangeColorCommand` only requires creating a new command class.
 
