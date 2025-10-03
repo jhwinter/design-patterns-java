@@ -434,6 +434,32 @@ need to modify the client code.
 * **Iterator**: Interface for traversing a collection.
 * **Collection**: Holds the elements and provides an iterator.
 
+```mermaid
+classDiagram
+    class Iterator {
+        <<interface>>
+        +next()
+        +hasNext()
+    }
+    class Aggregate {
+        <<interface>>
+        +iterator()
+    }
+    Aggregate ..> Iterator : creates
+    class ConcreteAggregate {
+        +iterator
+    }
+    Aggregate <|.. ConcreteAggregate : implements
+    class ConcreteIterator {
+        +next()
+        +hasNext()
+    }
+    Iterator <|.. ConcreteIterator : implements
+
+    ConcreteAggregate ..> ConcreteIterator : creates
+    ConcreteAggregate --* ConcreteIterator
+```
+
 ### Iterator Pattern Benefits
 
 1. **Separation of Concerns**: The traversal logic is separated from the collection
@@ -460,6 +486,14 @@ need to modify the client code.
 
 1. **Additional Complexity**: Implementing the iterator pattern can add extra layers of abstraction, especially for small or simple collections where direct traversal is sufficient.
 2. **Increased Overhead**: For small collections or when the structure is unlikely to change, the overhead of creating iterators may not be justified.
+
+### Quiz
+
+* The Iterator pattern allows for sequential access to elements in a collection without revealing the collection's internal structure.
+* The Iterator object is responsible for traversing the elements of the collection, providing methods for accessing each element.
+* The Iterator pattern allows for multiple iterators to operate on the same collection, enabling concurrent traversal without interference.
+* The `hasNext()` method is essential in the Iterator interface to check if there are more elements to iterate over, allowing the client to control the iteration process.
+* The Iterator pattern provides a way to traverse elements without revealing how the collection is structured, promoting encapsulation and reducing dependencies.
 
 
 
