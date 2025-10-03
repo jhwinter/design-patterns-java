@@ -64,6 +64,14 @@ states (e.g., games, data recovery) and allow users to return to previous states
 * **Document Editors**: Undo/redo functionality to navigate through document
 changes.
 
+### Quiz
+
+* The Memento Pattern is used to capture and restore an object's state without exposing its internal structure. This allows an object to return to a previous state.
+* The Caretaker is responsible for storing and restoring the Memento without modifying it. The Caretaker does not know the internal structure of the Memento; it simply stores and retrieves it when necessary.
+* The Memento Pattern respects encapsulation by allowing only the Originator to access and modify its internal state. The Caretaker and other classes have no knowledge of the Originator's state or structure.
+* The Originator creates the Memento object because it knows the internal state that needs to be saved. The Caretaker simply stores the Memento for later use.
+* A potential drawback of the Memento pattern is high memory usage if many states of an object are stored. This can be particularly problematic for applications that need to keep track of a large number of states over time.
+
 
 
 ## Observer Pattern
@@ -162,6 +170,14 @@ notified.
 * **Logging Systems**: Different logging handlers can observe events and log
 them as needed, such as to the console, file, or remote server.
 
+### Quiz
+
+* The Observer Pattern enables an object (the subject) to maintain a list of dependents (observers) and automatically notify them of state changes, promoting a loose coupling between objects.
+* The Observer Pattern is ideal for scenarios where one subject needs to notify multiple observers about changes, such as a weather station updating various display screens with new data.
+* In the Observer Pattern, the Subject maintains a list of Observers and is responsible for notifying them of any changes in its state. 
+* Allowing Observers to unregister themselves from the Subject helps manage memory and prevents memory leaks, ensuring that they do not receive notifications after they are no longer needed.
+* The Observer pattern enables the Subject to notify Observers without knowing their specific implementations, promoting loose coupling and flexibility in the system.
+
 
 
 ## Strategy Pattern
@@ -218,6 +234,14 @@ context.
 * To avoid conditional statements (`if-else` or `switch-case`) in the client
 code.
 * When a class has multiple behaviors, which can vary independently.
+
+### Quiz
+
+* The Strategy patten allows an object to change its behavior at runtime by selecting from different algorithms or strategies. This provides flexibility in choosing the best algorithm based on the context.
+* The Strategy pattern is often used when different algorithms (e.g., sorting algorithms like quicksort or merge sort) need to be chosen at runtime based on the current state or data.
+* The Strategy pattern improves flexibility by making algorithms or behaviors interchangeable. It allows changing the behavior of a class without modifying its source code, adhering to the Open/Closed Principle.
+* In the Strategy Pattern, an interface is typically created to define the behavior or algorithm, and then concrete classes implement this interface, providing different strategies.
+* The Strategy pattern adheres to the Open/Closed Principle by making it easy to add new strategies without modifying existing code.
 
 
 
@@ -288,6 +312,16 @@ classDiagram
 * **Increased Complexity**: Introducing the Command Pattern can lead to more classes and complexity, especially when there are many different commands.
 * **Overhead**: Each operation becomes an object, which may add memory and performance overhead in systems with large numbers of commands.
 
+### Quiz
+
+* The Command pattern encapsulates a request as an object, which allows clients to be parameterized with different requests, delayed execution, or queueing of operations.
+* The Command pattern allows new commands to be introduced without modifying the Invoker or Client classes, adhering to the Open/Closed Principle.
+* The Command interface typically includes an `undo()` method, allowing the system to reverse the operations performed by the execute method.
+* A potential drawback of the Command pattern is the increase in the number of classes, as each command needs its own class. This can increase the complexity in systems with many different operations.
+* A command pattern can be used to implement "Macro Commands as well". 
+  * Macro commands allow users to perform a series of operations (commands) as one single command. This is often seen in applications where multiple actions need to be grouped together and executed as a unit. 
+    * A video game where a "macro" can execute a series of character moves or an IDE that performs multiple code refactoring in one action.
+
 
 
 ## Template Method Pattern
@@ -303,13 +337,41 @@ Without the Template Method Pattern, you might end up duplicating the common ste
 * Code duplication: The `openFile()` and `closeFile()` methods are duplicated in both parsers.
 * Any changes to the common logic would require changes in every parser, violating the DRY (Don’t Repeat Yourself) principle.
 
+```mermaid
+classDiagram
+    class Parser {
+        <<abstract>>
+        %% parse() is the template method
+        +parse()
+        +openFile()
+        +closeFile()
+        #parseData()*
+    }
+    class CsvParser {
+        +parseData()
+    }
+    class JsonParser {
+        +parseData()
+    }
+    Parser <|.. CsvParser : implements
+    Parser <|.. JsonParser : implements
+```
+
+```java
+class Parser {
+    public void template() {
+        openFile();
+        parseData(); // specific parsing logic
+        closeFile();
+    }
+}
+```
+
 ### Template Method Pattern
 
-**Problem**: Different parts of an algorithm may need to vary in subclasses, but the
-overall structure should remain consistent.
+**Problem**: Different parts of an algorithm may need to vary in subclasses, but the overall structure should remain consistent.
 
-**Solution**: The Template Method Pattern defines the **skeleton** of an algorithm in a
-base class and lets subclasses override specific steps.
+**Solution**: The Template Method Pattern defines the **skeleton** of an algorithm in a base class and lets subclasses override specific steps.
 
 **Structure**:
 * **Abstract Class**: Defines the algorithm skeleton.
@@ -333,6 +395,17 @@ base class and lets subclasses override specific steps.
 **Game Development**: A game loop (initialize, update, render) can be defined in a base class, with specific games implementing their own logic for updating and rendering.
 
 The **Template Method Pattern** is ideal for situations where a common algorithm exists, but some steps may need to be redefined by subclasses. It helps enforce structure and promotes reusability, while allowing flexibility where needed.
+
+### Quiz
+
+* The purpose of the Template Method design pattern:
+  * defines the skeleton of an algorithm in a base class
+  * allows subclasses to override certain steps of the algorithm without changing its overall structure
+  * allows subclasses to alter the structure of an algorithm without changing the algorithm's skeleton
+* A "hook" is a method in the base class with a default or empty implementation that subclasses can override to extend or modify behavior.
+* In the Template Method Pattern, the base class defines the overall structure or "template" of an algorithm, and some steps are delegated to subclasses to define.
+* The Template Method Pattern adheres to the Open/Closed Principle because the algorithm's structure is defined in the base class, while subclasses can extend or modify specific steps without changing the overall template.
+* The Template pattern is well-suited for report generation, where a common structure exists, but specific content and formatting vary across different report types.
 
 
 
