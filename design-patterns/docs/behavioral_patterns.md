@@ -530,6 +530,28 @@ You are tasked with building a DirectionService class for a navigation app. This
 * **State**: Interface for state-specific behavior.
 * **Concrete State**: Specific implementations of the `State` interface that represent a particular state of the context object.
 
+```mermaid
+classDiagram
+    class TransportationMode {
+        %% State interface
+        <<interface>>
+        +calcETA()
+        +getDirection()
+    }
+    class DirectionService {
+        %% Context class
+        -transportationMode
+        +setTransportationMode(mode)
+        +getETA()
+        +getDirection()
+    }
+    DirectionService ..> TransportationMode : creates
+    TransportationMode <|.. Car
+    TransportationMode <|.. Walking
+    TransportationMode <|.. Cycling
+    TransportationMode <|.. Train
+```
+
 ### State Pattern Example
 
 **UI Navigation**
@@ -548,6 +570,14 @@ disabled, pressed).
    of stock.
 3. **TCP Connections**: Changing behavior based on connection state (listening,
    connected, closed)
+
+### Quiz
+
+* The State pattern allows an object to change its behavior when its internal state changes, enabling different behaviors for different states.
+* The State pattern organizes state-specific behavior into separate classes, making it easier to add new states without modifying existing code.
+* The State pattern is ideal for situations where an object's behavior varies based on its state, allowing for dynamic changes without altering the object's structure.
+* A video player exhibits distinct behaviors based on its current state (Playing, Paused, Stopped), making it a fitting example for the State pattern.
+* The State Manager uses the current State object to handle requests and behaviors, allowing for flexible state management by delegating responsibility to the appropriate State instance.
 
 
 
@@ -580,6 +610,20 @@ In our chat app, by introducing a **Mediator** object, we will decouple the user
 4. **Communication**:
    * Users interact only with the `ChatRoom` (mediator), which facilitates communication between them, removing direct dependencies between individual users.
 
+```mermaid
+classDiagram
+    class ChatMediatorInterface {
+        +sendMessage()
+    }
+    ChatMediatorInterface <|.. ChatRoom
+    class User {
+        +sendMessage()
+    }
+    User .. ChatMediatorInterface
+    ChatRoom --o User
+```
+
+
 ### Mediator Pattern Benefits
 
 1. **Reduces Complexity**: The mediator centralizes communication, reducing direct dependencies between objects.
@@ -595,6 +639,14 @@ Airplanes communicate through a central control tower (mediator) instead of coor
 In GUI applications, multiple UI components may need to interact. For example, when a dropdown changes, it may trigger updates to text fields, buttons, etc. A mediator can handle this interaction logic instead of having the components know about each other directly. 
 3. **Workflow Systems**:
 In a business process management system, a mediator can coordinate various activities across multiple systems or departments.
+
+### Quiz
+
+* The Mediator Pattern reduces dependencies between objects by centralizing communication, preventing direct communication between them.
+* The Mediator pattern decouples objects by having them communicate only through the mediator, promoting loose coupling in complex systems.
+* In the Mediator pattern, objects do not communicate directly but through a mediator, which handles and coordinates the interactions between them.
+* The Observer pattern is used for one-to-many communication (a subject notifying observers), while the Mediator pattern coordinates many-to-many communication between objects.
+* In a chat application, the Mediator facilitates communication between users by managing message delivery, allowing users to communicate without knowing each other's details.
 
 
 
