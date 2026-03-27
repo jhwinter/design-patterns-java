@@ -21,7 +21,3 @@ After executing the code, it will simulate the following sequence of state trans
 3. Stop the track.
 
 Each state transition should be clearly reflected in the output, showing how the media player responds to these predefined transitions.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

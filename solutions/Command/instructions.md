@@ -17,7 +17,3 @@ Your implementation should include a command interface that encapsulates the com
 * Turn off the light and print a message indicating that the light is off.
 * Turn on the fan and print a message indicating that the fan is on.
 * Turn off the fan and print a message indicating that the fan is off.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

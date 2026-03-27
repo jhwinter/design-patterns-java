@@ -18,7 +18,3 @@ You are tasked with developing a Flight Control System for an airport. The syste
 * Airplanes are registered with the control tower.
 * An airplane requests to take off or land.
 * The control tower processes the request and sends notifications to the airplane regarding its status.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

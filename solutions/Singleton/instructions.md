@@ -29,11 +29,3 @@ Implement the functionality for the logger using the **Singleton Design Pattern*
 **Output**:
 
 After executing the code, you should log messages at different levels, save them to a file, and print a confirmation message indicating that the logs were saved successfully.
-
-
-
-**Instructions**:
-
-* You only need to complete the TODOs mentioned in the code.
-
-* Please do not modify any existing code outside of the specified TODO sections.

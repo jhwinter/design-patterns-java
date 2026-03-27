@@ -130,6 +130,8 @@ Bike bike = new Bike();
 
 But as the system evolves, managing object creation directly like this can become complex, especially when adding new types of vehicles.
 
+### Code
+
 **Problems**:
 1. The client code (i.e., `TransportService`) is tightly coupled to concrete
    classes (`Car`, `Bike`, `Bus`).

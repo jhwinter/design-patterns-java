@@ -22,9 +22,3 @@ You are developing a stock price monitoring system that implements the Observer 
 * It will notify both observers of significant stock price changes that exceed the predefined threshold.
 * If an observer is removed, they will no longer receive notifications for subsequent price changes.
 * The output will confirm which investors received notifications, showcasing the observer design pattern in action.
-
-
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

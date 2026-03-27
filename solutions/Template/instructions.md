@@ -16,7 +16,3 @@ Implement the report generation functionality using the **Template Design Patter
 **Output**:
 
 Your program should generate three different reports: a Sales Report, an Employee Report, and an Inventory Report, displaying the structured output for each report type.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

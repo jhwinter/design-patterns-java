@@ -15,7 +15,3 @@ Implement the iteration functionality for the notification system using the Iter
 **Output**:
 
 After executing the code, you should add multiple notifications to each collection, iterate over all notifications, and print out their details to confirm the functionality of the iterator.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code.
-* Please do not modify any existing code outside of the specified TODO sections.

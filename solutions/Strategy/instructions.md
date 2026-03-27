@@ -14,7 +14,3 @@ Implement the formatting functionality using the Strategy Design Pattern to ensu
 **Output**:
 
 Your application should apply three different formatting strategies: Plain Text, HTML, and Markdown to the same document. The formatted output should be displayed for each strategy.
-
-**Instructions**:
-* You only need to complete the TODOs mentioned in the code. 
-* Please do not modify any existing code outside of the specified TODO sections.
