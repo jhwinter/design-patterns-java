@@ -8,7 +8,7 @@ public class Game {
         }
         // 5 Green Bullet Objects
         for(int i=0;i<5;i++){
-            Bullet bullet = new Bullet("Red",i*10,i*12,5);
+            Bullet bullet = new Bullet("Green",i*10,i*12,5);
         }
 
     }
